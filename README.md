@@ -119,17 +119,72 @@ print(f"max value: {merged_values[len(merged_values)-1]}")
 
 
 
-
 ## Step 3: Working with List of Dictionaries
 
-Using a list of dictionaries employees, write a program that:
+Using a list of 2 dictionaries:
+```
+employees = [{
+  "name": "Tina",
+  "age": 30,
+  "birthday": "1990-03-10",
+  "job": "DevOps Engineer",
+  "address": {
+    "city": "New York",
+    "country": "USA"
+  }
+},
+{
+  "name": "Tim",
+  "age": 35,
+  "birthday": "1985-02-21",
+  "job": "Developer",
+  "address": {
+    "city": "Sydney",
+    "country": "Australia"
+  }
+}]
+```
 
-1. Prints the name, job, and city of each employee.
-2. Prints the country of the second employee directly.
+1. Write a Python Program that:
+
+- Prints out - the name, job and city of each employee using a loop. The program must work for any number of employees in the list, not just 2.
+  
+- Prints the country of the second employee in the list by accessing it directly without the loop.
 
 ```
-# Exercise 3 code here
+# Print out - the name, job and city of each employee using a loop. The program must work for any number of employees in the list, not just 2
+employees = [{
+  "name": "Tina",
+  "age": 30,
+  "birthday": "1990-03-10",
+  "job": "DevOps Engineer",
+  "address": {
+    "city": "New York",
+    "country": "USA"
+  }
+},
+{
+  "name": "Tim",
+  "age": 35,
+  "birthday": "1985-02-21",
+  "job": "Developer",
+  "address": {
+    "city": "Sydney",
+    "country": "Australia"
+  }
+}]
+
+for employee in employees:
+    print(f"name: {employee['name']}")
+    print(f"job: {employee['job']}")
+    print(f"city: {employee['address']['city']}")
+    print("--------------------------")
+#  Prints the country of the second employee in the list by accessing it directly without the loop.
+
+country = employees[1]["address"]["country"]
+print(f"country of the second employee: {country}")
 ```
+
 
 ## Step 4: Working with Functions
 
