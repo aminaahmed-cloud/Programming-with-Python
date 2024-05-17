@@ -599,7 +599,25 @@ Write a program that:
 - Calculates remaining days, hours, and minutes till the birthday.
 
 ```
-# Exercise 8 code here
+from datetime import datetime
+birthday_string = input("Enter your birthday (example - 20/09/2000): ")
+
+birthday_date = datetime.strptime(birthday_string, '%d/%m/%Y').date()
+today = datetime.today()
+
+difference_one = datetime(today.year, birthday_date.month, birthday_date.day)
+difference_two = datetime(today.year + 1, birthday_date.month, birthday_date.day)
+
+days_till_birthday = 0
+if difference_one > today:
+    # birthday this year
+    days_till_birthday = difference_one - today
+else:
+    # birthday next year
+    days_till_birthday = difference_two - today
+
+print(f"{days_till_birthday.days} days till your birthday")
+
 ```
 
 ## Step 9: Working with Spreadsheets
@@ -607,7 +625,44 @@ Write a program that:
 Write a program that reads and sorts employee data from a spreadsheet file.
 
 ```
-# Exercise 9 code here
+import openpyxl
+from operator import itemgetter
+
+empl_file = openpyxl.load_workbook("employees.xlsx")
+empl_list = empl_file["Sheet1"]
+
+# remove columns 3 and 4
+empl_list.delete_cols(3,4)
+
+employees_by_experience = []
+
+for empl_row in range(2, empl_list.max_row + 1):
+    empl_name = empl_list.cell(empl_row, 1).value
+    empl_experience = empl_list.cell(empl_row, 2).value
+
+    employees_by_experience.append({ 
+        "name":  empl_name, 
+        "experience": int(empl_experience)
+    })
+
+# sort the list of dictionaries by experience
+new_list = sorted(employees_by_experience, key=itemgetter("experience"), reverse=True)
+
+# add entries to the spreadsheet sorted by experience
+for empl_row in range(2, empl_list.max_row + 1):
+    empl_name = empl_list.cell(empl_row, 1)
+    empl_experience = empl_list.cell(empl_row, 2)
+
+    # because the rows start from row 2, but index for our list starts at 0
+    index = empl_row - 2
+    employee = new_list[index]
+
+    empl_name.value = employee["name"]
+    empl_experience.value = employee["experience"]
+
+empl_file.save("employees_sorted_by_experience.xlsx")
+
+
 ```
 
 ## Step 10: Working with REST APIs
@@ -615,5 +670,12 @@ Write a program that reads and sorts employee data from a spreadsheet file.
 Write a program that connects to the GitHub API, fetches public repositories for a specific user, and prints their names and URLs.
 
 ```
-# Exercise 10 code here
+import requests
+
+response = requests.get("https://gitlab.com/api/v4/users/aminaahmed-cloud/projects")
+my_projects = response.json()
+
+for project in my_projects:
+    print(f"Project Name: {project['name']}\nProject Url: {project['web_url']}\n")
+
 ```
