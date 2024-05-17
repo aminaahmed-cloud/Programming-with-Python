@@ -4,10 +4,15 @@ This repository contains Python exercises covering various topics such as workin
 
 ## Step 1: Working with Lists
 
-Using the provided list `my_list`, write a program that:
-1. Prints all elements of the list that are higher than or equal to 10.
-2. Creates a new list containing elements higher than or equal to 10 and prints it.
-3. Asks the user for a number and prints a list containing elements higher than the user-provided number.
+Using the following list:
+```
+my_list = [1, 2, 2, 4, 4, 5, 6, 8, 10, 13, 22, 35, 52, 83]
+```
+1. Write a program that prints out all the elements of the list that are higher than or equal to 10.
+
+2. Instead of printing the elements one by one, make a new list that has all the elements higher than or equal to 10 from this list in it and print out this new list.
+
+3. Ask the user for a number as input and print a list that contains only those elements from my_list that are higher than the number given by the user.
 
 ```python
 # Print out elements higher than or equal to 10
@@ -33,15 +38,87 @@ for number in my_list:
 
 ## Step 2: Working with Dictionaries
 
-Using the provided dictionary employee, write a program that:
+1. Using the following dictionary:
 
-1. Updates the job to "Software Engineer".
-2. Removes the "age" key from the dictionary.
-3. Loops through the dictionary and prints key-value pairs
+employee = {
+  "name": "Tim",
+  "age": 30,
+  "birthday": "1990-03-10",
+  "job": "DevOps Engineer"
+}
+
+2. Write a Python Script that:
+
+- Updates the job to Software Engineer
+- Removes the age key from the dictionary
+- Loops through the dictionary and prints the key:value pairs one by one
+
 
 ```python
-# Exercise 2 code here
+# Update the job to Software Engineer
+
+employee = {
+    "name": "Amina",
+    "age": 27,
+    "birthday": "1996-09-22",
+    "job": "DevOps Engineer"
+}
+
+employee["job"] = "Software Engineer"
+print(employee)
+
+# Remove the age key from the dictionary
+employee.pop("age")
+print(employee)
+
+# Loop through the dictionary and print the key:value pairs one by one
+for key, value in employee.items():
+    print(f"{key}:{value}")
+
 ```
+
+
+3. Using the following 2 dictionaries:
+
+dict_one = {'a': 100, 'b': 400} 
+dict_two = {'x': 300, 'y': 200}
+
+4. Write a Python Script that:
+
+- Merges these two Python dictionaries into 1 new dictionary.
+- Sums up all the values in the new dictionary and prints it out
+- Prints the max and minimum values of the dictionary
+
+
+```
+# Merge these two python dictionaries into 1 new dictionary
+dict_one = {'a': 100, 'b': 400}
+dict_two = {'x': 300, 'y': 200}
+
+dict_merged = dict_one.copy()
+dict_merged.update(dict_two)
+print(dict_merged)
+
+# Sum up all the values in the new dictionary and print it out
+
+sum_of_values = 0
+for value in dict_merged.values():
+    sum_of_values =sum_of_values + value
+print(sum_of_values)
+
+# Print the max and minimum values of the dictionary
+
+merged_values = []
+for value in dict_merged.values():
+    merged_values.append(value)
+
+merged_values.sort()
+print(f"min value: {merged_values[0]}")
+print(f"max value: {merged_values[len(merged_values)-1]}")
+```
+
+
+
 
 ## Step 3: Working with List of Dictionaries
 
