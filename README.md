@@ -333,12 +333,47 @@ print_even_numbers([0, 3, 9, 10, 2, 13, 120])
 
 Write a simple calculator program that:
 
-- Takes user input of 2 numbers and an operation.
-- Handles plus, minus, multiply, and divide operations.
-- Keeps track of the number of calculations.
+- takes user input of 2 numbers and operation to execute
+- handles the following operations: plus, minus, multiply, divide
+- does proper user validation and give feedback: only numbers allowed
+- Keeps the Calculator program running until the user types “exit”
+- Keeps track of how many calculations the user has taken, and when the user exits the calculator program, prints out the number of calculations the user did
+
+**Concepts covered**: working with different data types, conditionals, type conversion, user input, user input validation
 
 ```
-# Exercise 5 code here
+def calculator(number1, number2, operation):
+    # from Python version 3.10, you can use match-case
+    if operation == "plus":
+        print(number1 + number2)
+    elif operation == "minus":
+        print(number1 - number2)
+    elif operation == "multiply":
+        print(number1 * number2)
+    elif operation == "divide":
+        print(number1 / number2)
+
+
+number_of_calculations_done = 0
+while True:
+    number1 = input("Enter the first number: ")
+
+    if number1 == "exit":
+        print("exiting the program")
+        print(f"you did {number_of_calculations_done} calculations")
+        break
+    number2 = input("Enter the second number: ")
+    operation = input("What operation do you want to perform on these numbers (plus, minus, multiply, divide): ")
+
+    valid_numbers = number1.isnumeric() and number2.isnumeric()
+    valid_operation = operation == "plus" or operation == "minus" or operation == "multiply" or operation == "divide"
+    if not valid_numbers:
+        print("only numbers allowed")
+    elif not valid_operation:
+        print("operation not supported")
+    else:
+        calculator(int(number1), int(number2), operation)
+        number_of_calculations_done += 1
 ```
 
 ## Step 6: Python Program 'Guessing Game'
